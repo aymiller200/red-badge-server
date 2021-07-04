@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const Host = require('../models/host')
+const {Host} = require('../models')
 
 const validateTwo = (req, res, next) => {
     const token = req.headers.authorization
@@ -17,16 +17,17 @@ const validateTwo = (req, res, next) => {
                         id: decoded.id
                     }
                 })
-                .then(guest => {
+                .then(host => {
                     if(!host) throw err;
 
-                    req.host = host
+                    req.hosts = host
                     return next()
                 })
                 .catch(err => next(err))
-            }else req.errors = err; 
+            }else {
+                req.errors = err; 
             return res.status(500).send('You are not authorized.')
-        })
+        }})
     }
 }
 

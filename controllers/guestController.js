@@ -1,7 +1,9 @@
 const router = require('express').Router()
-const Guest = require('../models/guest')
+const {Guest, Host, Book} = require('../models')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const validate = require('../middleware/validateSessionGuest')
+
 
 router.post('/register', (req, res) => {
     Guest.create({
@@ -40,6 +42,34 @@ router.post('/login', (req, res) => {
                 res.send(`Guest not found`)
             }
         }).catch(err => res.status(500).json({ error: err }))
+})
+
+router.get('/', validate,  async(req, res) => {
+    try{
+        const guests = await Guest.findAll({
+            include: ['books']
+        })
+        res.status(200).json({guests})
+    }catch(error){
+        res.status(500).json({error})
+    }
+})
+
+router.get('/hosts', validate, async (req, res) => {
+    try{ 
+        const hosts = await Host.findAll({
+            include: ['hostBooks']
+        })
+        if(hosts){
+        res.status(200).json({hosts})
+        }else{
+            res.status(403).json({message: 'Not Authorized'})
+        }
+    }catch(error){
+        res.status(500).json({error})
+        console.log(error)
+        
+    }
 })
 
 module.exports = router

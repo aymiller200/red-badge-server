@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const Guest = require('../models/guest')
+const {Guest} = require('../models')
 
 const validate = (req, res, next) => {
     const token = req.headers.authorization
@@ -24,9 +24,10 @@ const validate = (req, res, next) => {
                     return next()
                 })
                 .catch(err => next(err))
-            }else req.errors = err; 
+            }else {
+            req.errors = err; 
             return res.status(500).send('You are not authorized.')
-        })
+        }})
     }
 }
 

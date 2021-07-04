@@ -1,19 +1,24 @@
 const express = require('express')
 const app = express()
-const db = require('./db')
+const db = require('./models')
 
 const guestController = require('./controllers/guestController')
 const hostController = require('./controllers/hostController')
 const bookingController = require('./controllers/bookingController')
+const commentController = require('./controllers/commentController')
 
+require('./models/associations')
 
-app.use(require('./middleware/headers'))
+app.use(require('../Red-Badge-Server/middleware/headers'))
 app.use(express.json())
 
 app.use('/guest', guestController)
 app.use('/host', hostController)
+app.use('/book', bookingController)
+app.use('/comment', commentController)
 
-db.sync()
+db.sequelize.sync()
+
 app.listen(3535, () => {
     console.log('App is listening on port 3535')
 })

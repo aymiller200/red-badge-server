@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Host = require('../models/host')
+const {Host, Guest} = require('../models')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 

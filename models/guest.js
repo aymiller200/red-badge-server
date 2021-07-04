@@ -1,40 +1,38 @@
-const sequelize = require('sequelize')
-const db = require('../db')
+module.exports = (sequelize, DataTypes) => {
 
-const Guest = db.define('guest', {
-    email: {
-        type: sequelize.STRING, 
-        allowNull: false, 
-        unique: true
-    },
+    return sequelize.define('Guest', {
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
 
-    username: {
-        type: sequelize.STRING, 
-        allowNull: false, 
-        unique: true
-    },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
 
-    firstName: {
-        type: sequelize.STRING,
-        allowNull: false
-    },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
 
-    lastName: {
-        type: sequelize.STRING,
-        allowNull: true
-    },
-    
-    bandName: {
-        type: sequelize.STRING, 
-        allowNull: false
-    },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
 
-    password: {
-        type: sequelize.STRING, 
-        allowNull: false
-    },
+        bandName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
 
-   
-})
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
 
-module.exports = Guest
+    })
+
+}
