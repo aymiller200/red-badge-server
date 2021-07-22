@@ -1,30 +1,52 @@
+
+
 module.exports = (sequelize, DataTypes) => {
 
     return sequelize.define('Book', {
 
         username: {
             type: DataTypes.STRING, 
-            allowNull: false
+            allowNull: false,
+            validate:{
+                notNull: true,
+                notEmpty: true
+               
+            }
         },
         
         startDate: {
-            type: DataTypes.DATE, 
+            type: DataTypes.DATEONLY, 
             allowNull: false, 
+            validate:{
+                notNull: true,
+                isDate: true,
+                notEmpty: true
+            }
         },
 
         endDate: {
-            type: DataTypes.DATE, 
-            allowNull: false
+            type: DataTypes.DATEONLY, 
+            allowNull: false,
+            validate:{
+                notNull: true,
+                isDate: true,
+                notEmpty: true
+            }
         },
 
         peopleStaying: {
             type: DataTypes.INTEGER, 
-            allowNull: false
+            allowNull: false, 
+            validate:{
+                notNull: true,
+                notEmpty: true
+            }
         },
 
         notes: {
             type: DataTypes.STRING, 
-            allowNull: true
+            allowNull: true,
+            
         }
 
 
