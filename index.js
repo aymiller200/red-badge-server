@@ -6,6 +6,11 @@ const guestController = require('./controllers/guestController')
 const hostController = require('./controllers/hostController')
 const bookingController = require('./controllers/bookingController')
 const commentController = require('./controllers/commentController')
+const aboutController = require('./controllers/aboutController')
+const aboutHostController = require('./controllers/aboutHostController')
+const genreController = require('./controllers/genreController')
+const socialMediaController = require('./controllers/socialMediaController')
+
 
 require('./models/associations')
 
@@ -16,7 +21,10 @@ app.use('/guest', guestController)
 app.use('/host', hostController)
 app.use('/book', bookingController)
 app.use('/comment', commentController)
-
+app.use('/aboutyou', aboutController)
+app.use('/genre', genreController)
+app.use('/social-media', socialMediaController)
+app.use('/abouthost', aboutHostController )
 db.sequelize.sync()
 
 app.listen(3535, () => {

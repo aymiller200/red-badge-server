@@ -66,9 +66,9 @@ router.get('/host-all/:HostId', validateTwo, async (req, res) => {
     }
 })
 
-router.put('/edit/:id', validate, async (req, res) => {
+router.put('/edit/:GuestId/:id', validate, async (req, res) => {
     try {
-        if (req.body.GuestId === req.guest.id) {
+        if (req.params.GuestId == req.guest.id) {
             const comment = await Comment.update(req.body, { where: { id: req.params.id } })
             res.status(200).json({ message: 'Successfully Updated', comment })
         } else {
@@ -79,9 +79,9 @@ router.put('/edit/:id', validate, async (req, res) => {
     }
 })
 
-router.put('/host-edit/:id', validateTwo, async (req, res) => {
+router.put('/host-edit/:HostId/:id', validateTwo, async (req, res) => {
     try {
-        if (req.body.HostId === req.hosts.id) {
+        if (req.params.HostId == req.hosts.id) {
             const comment = await Comment.update(req.body, { where: { id: req.params.id } })
             res.status(200).json({ message: 'Successfully Updated', comment })
         } else {
