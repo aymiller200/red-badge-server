@@ -58,7 +58,8 @@ router.get('/', validate,  async(req, res) => {
 router.get('/hosts', validate, async (req, res) => {
     try{ 
         const hosts = await Host.findAll({
-            include: ['hostBooks']
+            include: ['hostBooks', 'AboutHost']
+            
         })
         if(hosts){
         res.status(200).json({hosts})

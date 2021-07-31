@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Host, Guest} = require('../models')
+const {Host} = require('../models')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
@@ -46,5 +46,6 @@ router.post('/login', (req, res) => {
 
         }).catch(err => res.status(500).json({error: err}))
 })
+
 
 module.exports = router
