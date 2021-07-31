@@ -27,6 +27,7 @@ app.use('/social-media', socialMediaController)
 app.use('/abouthost', aboutHostController )
 db.sequelize.sync()
 
+
 app.listen(process.env.PORT, () => {
     console.log(`App is listening on port ${process.env.PORT}`)
 })
