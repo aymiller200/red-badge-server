@@ -10,7 +10,7 @@ const validateTwo = (req, res, next) => {
             message: 'No token present'
         })
     }else{
-        jwt.verify(token, 'I_AM_SECRET', (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             if(!err && decoded){
                 Host.findOne({
                     where:{

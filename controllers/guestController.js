@@ -15,7 +15,7 @@ router.post('/register', (req, res) => {
         password: bcrypt.hashSync(req.body.password, 13),
     })
         .then(guest => {
-            let token = jwt.sign({ id: guest.id }, 'I_AM_SECRET', { expiresIn: '1d' })
+            let token = jwt.sign({ id: guest.id }, process.env.JWT_SECRET, { expiresIn: '1d' })
             res.status(200).send({ guest: guest, token: token })
         })
         .catch((err => res.status(500).send({ err })))
@@ -35,7 +35,7 @@ router.post('/login', (req, res) => {
                     })
 
                 const generateToken = (guest) => {
-                    let token = jwt.sign({ id: guest.id }, 'I_AM_SECRET', { expiresIn: '1d' })
+                    let token = jwt.sign({ id: guest.id }, process.env.JWT_SECRET, { expiresIn: '1d' })
                     res.send({ guest: guest, token: token })
                 }
             } else {

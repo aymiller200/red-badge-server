@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Comment, Book } = require('../models')
+const { Comment } = require('../models')
 const validate = require('../middleware/validateSessionGuest')
 const validateTwo = require('../middleware/validateSessionHost')
 

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const db = require('./models')
@@ -10,7 +11,6 @@ const aboutController = require('./controllers/aboutController')
 const aboutHostController = require('./controllers/aboutHostController')
 const genreController = require('./controllers/genreController')
 const socialMediaController = require('./controllers/socialMediaController')
-
 
 require('./models/associations')
 
@@ -27,6 +27,6 @@ app.use('/social-media', socialMediaController)
 app.use('/abouthost', aboutHostController )
 db.sequelize.sync()
 
-app.listen(3535, () => {
-    console.log('App is listening on port 3535')
+app.listen(process.env.PORT, () => {
+    console.log(`App is listening on port ${process.env.PORT}`)
 })
